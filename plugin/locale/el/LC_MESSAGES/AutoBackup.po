@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoBackup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:19+0200\n"
+"POT-Creation-Date: 2026-09-18 12:08+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../ui.py:1520
+#: ../ui.py:1523
 msgid "Apply filters"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Archive creation failed"
 msgstr ""
 
-#: ../ui.py:1502
+#: ../ui.py:1505
 msgid "Archive filters"
 msgstr ""
 
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Archive only"
 msgstr ""
 
-#: ../plugin.py:319
+#: ../plugin.py:329
 msgid "Auto backup"
 msgstr "Αυτόματη εφεδρεία"
 
@@ -49,7 +49,7 @@ msgstr "Ρυθμίσεις αυτόματης εφεδρείας"
 msgid "Automatic backup"
 msgstr "Αυτόματη εφεδρεία"
 
-#: ../plugin.py:323
+#: ../plugin.py:333
 msgid "Automatic settings backup"
 msgstr "Αυτόματη δημιουργία αντιγράφων ασφαλείας των ρυθμίσεων"
 
@@ -66,7 +66,7 @@ msgstr "Εφεδρεία των πληροφοριών EPG"
 msgid "Backup archive created"
 msgstr "Εφεδρεία των πληροφοριών EPG"
 
-#: ../ui.py:1294 ../ui.py:1348
+#: ../ui.py:1297 ../ui.py:1351
 #, fuzzy
 msgid "Backup archive list"
 msgstr "Εφεδρεία των πληροφοριών EPG"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "CF"
 msgstr "CF"
 
-#: ../ui.py:302 ../ui.py:1519 ../ui.py:1572
+#: ../ui.py:302 ../ui.py:1522 ../ui.py:1575
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -127,7 +127,7 @@ msgid "Create Autoinstall"
 msgstr "Δημιουργία αυτόματης εγκατάστασης"
 
 #: ../ui.py:441
-msgid "Create a local backup and archive of the current settings (same as pressing the yellow button)."
+msgid "Create a local backup and archive of the current settings (same as pressing the yellow button on the main screen)."
 msgstr ""
 
 #: ../ui.py:446
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Daily"
 msgstr ""
 
-#: ../ui.py:585 ../ui.py:607 ../ui.py:1303
+#: ../ui.py:585 ../ui.py:607 ../ui.py:1306
 msgid "Delete"
 msgstr ""
 
@@ -160,7 +160,7 @@ msgstr "Αφαίρεση λίστας αυτόματης εγκατάσταση�
 msgid "Delete including the generic 'autoinstall' file"
 msgstr "Αφαίρεση λίστας αυτόματης εγκατάστασης"
 
-#: ../ui.py:1611
+#: ../ui.py:1614
 msgid "Deselect"
 msgstr "Αποεπιλογή"
 
@@ -179,7 +179,7 @@ msgid ""
 "On shared storage, it may belong to another receiver!"
 msgstr ""
 
-#: ../ui.py:1433
+#: ../ui.py:1436
 #, fuzzy
 msgid "Do you really want to delete this backup archive?"
 msgstr "Επιλέξτε το αντίγραφο ασφαλείας των ρυθμίσεων που επιθυμείτε να επαναφέρετε. Θέλετε να γίνει επαναφορά αυτών των ρυθμίσεων και επανεκκίνηση;"
@@ -188,7 +188,7 @@ msgstr "Επιλέξτε το αντίγραφο ασφαλείας των ρυ�
 msgid "Done"
 msgstr "Ολοκληρώθηκε"
 
-#: ../ui.py:1515
+#: ../ui.py:1518
 msgid "Enigma"
 msgstr ""
 
@@ -249,7 +249,7 @@ msgstr "Απέτυχε"
 msgid "Failed to delete backup."
 msgstr "Επιλογή αρχείων προς εφεδρεία"
 
-#: ../ui.py:1306
+#: ../ui.py:1309
 msgid "Filters"
 msgstr ""
 
@@ -257,11 +257,11 @@ msgstr ""
 msgid "Harddisk"
 msgstr "Σκληρός δίσκος"
 
-#: ../ui.py:1513
+#: ../ui.py:1516
 msgid "Hostname"
 msgstr ""
 
-#: ../ui.py:1514
+#: ../ui.py:1517
 msgid "Image"
 msgstr ""
 
@@ -301,23 +301,23 @@ msgstr ""
 msgid "Manual"
 msgstr "Χειροκίνητα"
 
-#: ../ui.py:1515
+#: ../ui.py:1518
 msgid "Match the current enigma name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1513
+#: ../ui.py:1516
 msgid "Match the current hostname using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1514
+#: ../ui.py:1517
 msgid "Match the current image name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1512
+#: ../ui.py:1515
 msgid "Match the current receiver MAC address using the archive name, info file or filenames in the archive."
 msgstr ""
 
-#: ../ui.py:1516
+#: ../ui.py:1519
 msgid "Match the current slot number using the archive name or the info file."
 msgstr ""
 
@@ -348,7 +348,7 @@ msgid ""
 "Delete it anyway?"
 msgstr ""
 
-#: ../ui.py:1354 ../ui.py:1448
+#: ../ui.py:1357 ../ui.py:1451
 msgid ""
 "No backup archives match the current filters.\n"
 "\n"
@@ -373,15 +373,15 @@ msgstr "Δεν βρέθηκαν κατάλληλα μέσα, τοποθετήσ�
 msgid "Nowhere"
 msgstr "Πουθενά"
 
-#: ../ui.py:1366
+#: ../ui.py:1369
 msgid "Original order"
 msgstr ""
 
-#: ../ui.py:1625
+#: ../ui.py:1628
 msgid "Really close without saving settings?"
 msgstr "Έξοδος χωρίς αποθήκευση ρυθμίσεων;"
 
-#: ../ui.py:1512
+#: ../ui.py:1515
 msgid "Receiver MAC"
 msgstr ""
 
@@ -390,10 +390,11 @@ msgid "Remove autoinstall list"
 msgstr "Αφαίρεση λίστας αυτόματης εγκατάστασης"
 
 #: ../ui.py:444
-msgid "Remove the 'autoinstall' file from a backup."
-msgstr ""
+#, fuzzy
+msgid "Remove the 'autoinstall' file from a local backup."
+msgstr "Δεν βρέθηκε λίστα αυτόματης εγκατάστασης"
 
-#: ../ui.py:305 ../ui.py:445 ../ui.py:1304
+#: ../ui.py:305 ../ui.py:445 ../ui.py:1307
 msgid "Restore"
 msgstr "Επαναφορά"
 
@@ -407,10 +408,10 @@ msgid "Restore settings from a selected archive. MAC address is verified, archiv
 msgstr ""
 
 #: ../ui.py:445
-msgid "Restore settings from the current backup."
+msgid "Restore settings from the latest valid backup archive (same as pressing the blue button on the main screen)."
 msgstr ""
 
-#: ../ui.py:1391
+#: ../ui.py:1394
 msgid "Restore this backup archive and restart?"
 msgstr ""
 
@@ -424,11 +425,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../ui.py:1393
+#: ../ui.py:1396
 msgid "Restore this backup archive anyway and restart?"
 msgstr ""
 
-#: ../ui.py:1305 ../ui.py:1366
+#: ../ui.py:1308 ../ui.py:1369
 msgid "Reverse order"
 msgstr ""
 
@@ -448,7 +449,7 @@ msgstr "Σε εκτέλεση..."
 msgid "SD"
 msgstr "SD"
 
-#: ../ui.py:303 ../ui.py:1573
+#: ../ui.py:303 ../ui.py:1576
 msgid "Save"
 msgstr "Αποθήκευση"
 
@@ -470,7 +471,7 @@ msgstr ""
 msgid "Search time: %s"
 msgstr ""
 
-#: ../ui.py:1613
+#: ../ui.py:1616
 msgid "Select"
 msgstr "Επιλογή"
 
@@ -482,7 +483,7 @@ msgstr ""
 msgid "Select files to backup"
 msgstr "Επιλογή αρχείων προς εφεδρεία"
 
-#: ../ui.py:1604
+#: ../ui.py:1607
 msgid "Select files/folders to backup"
 msgstr "Επιλογή αρχείων/φακέλων προς εφεδρεία"
 
@@ -500,7 +501,7 @@ msgstr "Καθημερινή αυτόματη δημιουργία αντιγρ�
 msgid "Set the reference time for automatic backups."
 msgstr "Καθημερινή αυτόματη δημιουργία αντιγράφων ασφαλείας"
 
-#: ../ui.py:1516
+#: ../ui.py:1519
 msgid "Slot"
 msgstr ""
 
@@ -518,7 +519,7 @@ msgstr "USB"
 msgid "Unable to read backup archive status"
 msgstr "Εφεδρεία των πληροφοριών EPG"
 
-#: ../ui.py:1484
+#: ../ui.py:1487
 msgid "Unable to read backup archive."
 msgstr ""
 

@@ -438,11 +438,11 @@ class Config(ConfigListScreen, Screen):
 	def menu(self):
 		lst = []
 		lst.append((_("Select files to backup"), self.selectFiles, _("Select files and folders to include in the backup. Basic backup items are already selected."))),
-		lst.append((_("Run a backup now"), self.doBackup, _("Create a local backup and archive of the current settings (same as pressing the yellow button)."))),
+		lst.append((_("Run a backup now"), self.doBackup, _("Create a local backup and archive of the current settings (same as pressing the yellow button on the main screen)."))),
 		lst.append((_("Backup EPG cache"), self.doepgcachebackup, _("Save current contents of EPG cache to a file."))),
 		lst.append((_("Run autoinstall"), self.doAutoinstall, _("Install all plugins listed in the 'autoinstall' file. Already installed plugins are skipped."))),
-		lst.append((_("Remove autoinstall list"), self.doRemoveAutoinstall, _("Remove the 'autoinstall' file from a backup."))),
-		lst.append((_("Restore"), self.doRestore, _("Restore settings from the current backup."))),
+		lst.append((_("Remove autoinstall list"), self.doRemoveAutoinstall, _("Remove the 'autoinstall' file from a local backup."))),
+		lst.append((_("Restore"), self.doRestore, _("Restore settings from the latest valid backup archive (same as pressing the blue button on the main screen)."))),
 		lst.append((_("Create archive with current settings"), self.doArchiveCurrentSettings, _("Create a separate archive with current settings and autoinstall list without overwriting the existing backup. The hostname and slot number are added to the archive name."))),
 		lst.append((_("Restore from archive"), self.doRestorePreviousManual, _("Restore settings from a selected archive. MAC address is verified, archive is extracted and settings are restored."))),
 

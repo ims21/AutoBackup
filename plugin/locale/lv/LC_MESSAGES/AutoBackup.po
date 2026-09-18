@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoBackup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:19+0200\n"
+"POT-Creation-Date: 2026-09-18 12:08+0200\n"
 "PO-Revision-Date: 2018-12-25 21:50+0200\n"
 "Last-Translator: Taapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -16,7 +16,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../ui.py:1520
+#: ../ui.py:1523
 msgid "Apply filters"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Archive creation failed"
 msgstr ""
 
-#: ../ui.py:1502
+#: ../ui.py:1505
 msgid "Archive filters"
 msgstr ""
 
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Archive only"
 msgstr ""
 
-#: ../plugin.py:319
+#: ../plugin.py:329
 msgid "Auto backup"
 msgstr "Dublējumkopija"
 
@@ -49,7 +49,7 @@ msgstr "Iestatījumi"
 msgid "Automatic backup"
 msgstr "Dublējumkopija"
 
-#: ../plugin.py:323
+#: ../plugin.py:333
 msgid "Automatic settings backup"
 msgstr "Iestatījumu dublējumkopija"
 
@@ -66,7 +66,7 @@ msgstr "Saglabāt EPG informāciju"
 msgid "Backup archive created"
 msgstr "Saglabāt EPG informāciju"
 
-#: ../ui.py:1294 ../ui.py:1348
+#: ../ui.py:1297 ../ui.py:1351
 #, fuzzy
 msgid "Backup archive list"
 msgstr "Saglabāt EPG informāciju"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "CF"
 msgstr "CF"
 
-#: ../ui.py:302 ../ui.py:1519 ../ui.py:1572
+#: ../ui.py:302 ../ui.py:1522 ../ui.py:1575
 msgid "Cancel"
 msgstr "Atcelt"
 
@@ -129,7 +129,7 @@ msgid "Create Autoinstall"
 msgstr "Lietot pēc imidža uzstādīšanas"
 
 #: ../ui.py:441
-msgid "Create a local backup and archive of the current settings (same as pressing the yellow button)."
+msgid "Create a local backup and archive of the current settings (same as pressing the yellow button on the main screen)."
 msgstr ""
 
 #: ../ui.py:446
@@ -148,7 +148,7 @@ msgstr ""
 msgid "Daily"
 msgstr ""
 
-#: ../ui.py:585 ../ui.py:607 ../ui.py:1303
+#: ../ui.py:585 ../ui.py:607 ../ui.py:1306
 msgid "Delete"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr "Dzēst spraudņu sarakstu"
 msgid "Delete including the generic 'autoinstall' file"
 msgstr "Dzēst spraudņu sarakstu"
 
-#: ../ui.py:1611
+#: ../ui.py:1614
 msgid "Deselect"
 msgstr "Atcelt izvēli"
 
@@ -181,7 +181,7 @@ msgid ""
 "On shared storage, it may belong to another receiver!"
 msgstr ""
 
-#: ../ui.py:1433
+#: ../ui.py:1436
 #, fuzzy
 msgid "Do you really want to delete this backup archive?"
 msgstr ""
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Done"
 msgstr "Dublējumkopija izveidota"
 
-#: ../ui.py:1515
+#: ../ui.py:1518
 msgid "Enigma"
 msgstr ""
 
@@ -253,7 +253,7 @@ msgstr "Neizdevās izeidot dublējumkopiju"
 msgid "Failed to delete backup."
 msgstr "Izvēlēties dublējumkopijas failus"
 
-#: ../ui.py:1306
+#: ../ui.py:1309
 msgid "Filters"
 msgstr ""
 
@@ -261,11 +261,11 @@ msgstr ""
 msgid "Harddisk"
 msgstr "Cietais disks"
 
-#: ../ui.py:1513
+#: ../ui.py:1516
 msgid "Hostname"
 msgstr ""
 
-#: ../ui.py:1514
+#: ../ui.py:1517
 msgid "Image"
 msgstr ""
 
@@ -305,23 +305,23 @@ msgstr ""
 msgid "Manual"
 msgstr "Manuāli"
 
-#: ../ui.py:1515
+#: ../ui.py:1518
 msgid "Match the current enigma name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1513
+#: ../ui.py:1516
 msgid "Match the current hostname using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1514
+#: ../ui.py:1517
 msgid "Match the current image name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1512
+#: ../ui.py:1515
 msgid "Match the current receiver MAC address using the archive name, info file or filenames in the archive."
 msgstr ""
 
-#: ../ui.py:1516
+#: ../ui.py:1519
 msgid "Match the current slot number using the archive name or the info file."
 msgstr ""
 
@@ -352,7 +352,7 @@ msgid ""
 "Delete it anyway?"
 msgstr ""
 
-#: ../ui.py:1354 ../ui.py:1448
+#: ../ui.py:1357 ../ui.py:1451
 msgid ""
 "No backup archives match the current filters.\n"
 "\n"
@@ -377,15 +377,15 @@ msgstr "Nav atrasts piemērots datu nesējs. Pievienojiet USB zibatmiņu, SD kar
 msgid "Nowhere"
 msgstr "Nekur"
 
-#: ../ui.py:1366
+#: ../ui.py:1369
 msgid "Original order"
 msgstr ""
 
-#: ../ui.py:1625
+#: ../ui.py:1628
 msgid "Really close without saving settings?"
 msgstr ""
 
-#: ../ui.py:1512
+#: ../ui.py:1515
 msgid "Receiver MAC"
 msgstr ""
 
@@ -394,10 +394,11 @@ msgid "Remove autoinstall list"
 msgstr "Dzēst spraudņu sarakstu"
 
 #: ../ui.py:444
-msgid "Remove the 'autoinstall' file from a backup."
-msgstr ""
+#, fuzzy
+msgid "Remove the 'autoinstall' file from a local backup."
+msgstr "Dzēst spraudņu sarakstu"
 
-#: ../ui.py:305 ../ui.py:445 ../ui.py:1304
+#: ../ui.py:305 ../ui.py:445 ../ui.py:1307
 msgid "Restore"
 msgstr "Uzstādīt dublējumkopiju"
 
@@ -411,10 +412,10 @@ msgid "Restore settings from a selected archive. MAC address is verified, archiv
 msgstr ""
 
 #: ../ui.py:445
-msgid "Restore settings from the current backup."
+msgid "Restore settings from the latest valid backup archive (same as pressing the blue button on the main screen)."
 msgstr ""
 
-#: ../ui.py:1391
+#: ../ui.py:1394
 msgid "Restore this backup archive and restart?"
 msgstr ""
 
@@ -428,11 +429,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../ui.py:1393
+#: ../ui.py:1396
 msgid "Restore this backup archive anyway and restart?"
 msgstr ""
 
-#: ../ui.py:1305 ../ui.py:1366
+#: ../ui.py:1308 ../ui.py:1369
 msgid "Reverse order"
 msgstr ""
 
@@ -452,7 +453,7 @@ msgstr "Darbojas..."
 msgid "SD"
 msgstr "SD"
 
-#: ../ui.py:303 ../ui.py:1573
+#: ../ui.py:303 ../ui.py:1576
 msgid "Save"
 msgstr "Sagalbāt"
 
@@ -474,7 +475,7 @@ msgstr ""
 msgid "Search time: %s"
 msgstr ""
 
-#: ../ui.py:1613
+#: ../ui.py:1616
 msgid "Select"
 msgstr "Izvēlēties"
 
@@ -486,7 +487,7 @@ msgstr ""
 msgid "Select files to backup"
 msgstr "Izvēlēties dublējumkopijas failus"
 
-#: ../ui.py:1604
+#: ../ui.py:1607
 msgid "Select files/folders to backup"
 msgstr "Izvēlieties dublējumkopijas failus vai mapes"
 
@@ -504,7 +505,7 @@ msgstr "Veidot dublējumkopiju katru dienu"
 msgid "Set the reference time for automatic backups."
 msgstr "Veidot dublējumkopiju katru dienu"
 
-#: ../ui.py:1516
+#: ../ui.py:1519
 msgid "Slot"
 msgstr ""
 
@@ -522,7 +523,7 @@ msgstr "USB"
 msgid "Unable to read backup archive status"
 msgstr "Saglabāt EPG informāciju"
 
-#: ../ui.py:1484
+#: ../ui.py:1487
 msgid "Unable to read backup archive."
 msgstr ""
 
