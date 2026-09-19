@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoBackup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-18 12:08+0200\n"
+"POT-Creation-Date: 2026-09-19 08:19+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
 "Language-Team: Vytenis P. vyteniui@gmail.com\n"
@@ -142,10 +142,6 @@ msgstr ""
 
 #: ../ui.py:446
 msgid "Create archive with current settings"
-msgstr ""
-
-#: ../ui.py:341
-msgid "Create backup archives only, or also overwrite the local backup each time."
 msgstr ""
 
 #: ../plugin.py:19
@@ -511,6 +507,10 @@ msgstr "Kasdieninė automatinė atsarginė kopija"
 
 #: ../ui.py:1519
 msgid "Slot"
+msgstr ""
+
+#: ../ui.py:341
+msgid "Specifies whether 'Automatic backup' creates backup archives only or also overwrites the local backup each time."
 msgstr ""
 
 #: ../ui.py:340

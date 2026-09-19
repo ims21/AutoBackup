@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-18 12:08+0200\n"
+"POT-Creation-Date: 2026-09-19 08:19+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims@openpli.org>\n"
 "Language-Team: PLi <ims21@users.sourceforge.net>\n"
@@ -155,10 +155,6 @@ msgstr "Vytvoří samostatný archiv s aktuálním nastavením a autoinstall sez
 #: ../ui.py:446
 msgid "Create archive with current settings"
 msgstr "Vytvořit archiv aktuálního nastavení"
-
-#: ../ui.py:341
-msgid "Create backup archives only, or also overwrite the local backup each time."
-msgstr "Vytváří buď pouze archiv zálohy nebo přepisuje pokaždé i lokální zálohu."
 
 #: ../plugin.py:19
 msgid "Daily"
@@ -541,6 +537,11 @@ msgstr "Čas spuštění automatických záloh."
 #: ../ui.py:1519
 msgid "Slot"
 msgstr "Slot"
+
+#: ../ui.py:341
+#, fuzzy
+msgid "Specifies whether 'Automatic backup' creates backup archives only or also overwrites the local backup each time."
+msgstr "Určuje, zda 'Automatická záloha' vytváří pouze archiv zálohy nebo přepisuje pokaždé i lokální zálohu."
 
 #: ../ui.py:340
 msgid "Start time"
