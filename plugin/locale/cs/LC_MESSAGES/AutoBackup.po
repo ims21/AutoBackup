@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ims\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-19 08:19+0200\n"
+"POT-Creation-Date: 2026-09-19 08:50+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims@openpli.org>\n"
 "Language-Team: PLi <ims21@users.sourceforge.net>\n"
@@ -59,8 +59,8 @@ msgid "Automatic settings backup"
 msgstr "Nastavení automatického zálohování"
 
 #: ../ui.py:337
-msgid "Automatically creates backups at the selected frequency and start time."
-msgstr "Automaticky vytváří zálohu ve stanovený čas se zvoleným intervalem."
+msgid "Automatically creates backups at the selected frequency, start time, and backup mode."
+msgstr "Automaticky vytváří zálohu ve stanovený čas se zvoleným intervalem a typem."
 
 #: ../ui.py:442
 msgid "Backup EPG cache"
@@ -539,7 +539,6 @@ msgid "Slot"
 msgstr "Slot"
 
 #: ../ui.py:341
-#, fuzzy
 msgid "Specifies whether 'Automatic backup' creates backup archives only or also overwrites the local backup each time."
 msgstr "Určuje, zda 'Automatická záloha' vytváří pouze archiv zálohy nebo přepisuje pokaždé i lokální zálohu."
 

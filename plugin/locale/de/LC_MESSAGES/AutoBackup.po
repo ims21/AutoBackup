@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2-plugin-extensions-autobackup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-19 08:19+0200\n"
+"POT-Creation-Date: 2026-09-19 08:50+0200\n"
 "PO-Revision-Date: 2019-07-25 21:34+0200\n"
 "Last-Translator: Pike_Bishop <alfredzngr023@gmail.com>\n"
 "Language-Team: daddelfalk\n"
@@ -64,7 +64,7 @@ msgid "Automatic settings backup"
 msgstr "Automatische Sicherung der Einstellungen"
 
 #: ../ui.py:337
-msgid "Automatically creates backups at the selected frequency and start time."
+msgid "Automatically creates backups at the selected frequency, start time, and backup mode."
 msgstr ""
 
 #: ../ui.py:442

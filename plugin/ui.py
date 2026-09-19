@@ -334,7 +334,7 @@ class Config(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.list = []
 		self.list.append((_("Backup location"), self.cfgwhere, _("Directory where backup files are created.")))
-		self.list.append((_("Automatic backup"), self.cfg.enabled, _("Automatically creates backups at the selected frequency and start time.")))
+		self.list.append((_("Automatic backup"), self.cfg.enabled, _("Automatically creates backups at the selected frequency, start time, and backup mode.")))
 		if self.cfg.enabled.value:
 			self.list.append((4 * " " + _("Backup frequency"), self.cfg.frequency, _("Select how often an automatic backup is created.")))
 			self.list.append((4 * " " + _("Start time"), self.cfg.wakeup, _("Set the reference time for automatic backups.")))

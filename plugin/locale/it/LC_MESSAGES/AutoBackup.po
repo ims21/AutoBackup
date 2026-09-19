@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoBackup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-19 08:19+0200\n"
+"POT-Creation-Date: 2026-09-19 08:50+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dario Croci <spaeleus@croci.org>\n"
 "Language-Team: Dario Croci <spaeleus@croci.org>\n"
@@ -64,7 +64,7 @@ msgid "Automatic settings backup"
 msgstr "Backup automatico impostazioni"
 
 #: ../ui.py:337
-msgid "Automatically creates backups at the selected frequency and start time."
+msgid "Automatically creates backups at the selected frequency, start time, and backup mode."
 msgstr ""
 
 #: ../ui.py:442

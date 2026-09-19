@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: auto backup Persian Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-19 08:19+0200\n"
+"POT-Creation-Date: 2026-09-19 08:50+0200\n"
 "PO-Revision-Date: 2016-05-06 14:13+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -59,7 +59,7 @@ msgid "Automatic settings backup"
 msgstr "تهیه یک نسخه پشتیبان از لیست تنظیمات"
 
 #: ../ui.py:337
-msgid "Automatically creates backups at the selected frequency and start time."
+msgid "Automatically creates backups at the selected frequency, start time, and backup mode."
 msgstr ""
 
 #: ../ui.py:442
