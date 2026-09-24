@@ -30,9 +30,10 @@ config.plugins.autobackup.lastbackup = ConfigText(default="0")
 config.plugins.autobackup.autoinstall = ConfigOnOff(default = True)
 config.plugins.autobackup.where = ConfigText(default = "/media/hdd")
 config.plugins.autobackup.epgcache = ConfigOnOff(default = False)
-config.plugins.autobackup.keeparchives = ConfigSelection(default="all", choices=[
+config.plugins.autobackup.keeparchives = ConfigSelection(default="1", choices=[
 	("1", "1"),
 	("2", "2"),
+	("3", "3"),
 	("5", "5"),
 	("7", "7"),
 	("10", "10"),
