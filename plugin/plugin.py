@@ -29,6 +29,7 @@ config.plugins.autobackup.wakeup = ConfigClock(default = ((3*60) + 0) * 60)
 config.plugins.autobackup.lastbackup = ConfigText(default="0")
 config.plugins.autobackup.autoinstall = ConfigOnOff(default = True)
 config.plugins.autobackup.where = ConfigText(default = "/media/hdd")
+config.plugins.autobackup.where_archives = ConfigText(default = "")
 config.plugins.autobackup.epgcache = ConfigOnOff(default = False)
 config.plugins.autobackup.keeparchives = ConfigSelection(default="1", choices=[
 	("1", "1"),
@@ -61,10 +62,12 @@ container = None
 BACKUP_SCRIPT = "/usr/lib/enigma2/python/Plugins/Extensions/AutoBackup/settings-backup.sh"
 
 
-def backupCommand(where=None, fullArchive=False):
+def backupCommand(where=None, fullArchive=False, quiet=False):
 	cmd = BACKUP_SCRIPT
 	if config.plugins.autobackup.autoinstall.value or fullArchive:
 		cmd += " -a"
+	if quiet:
+		cmd += " -q"
 	cmd += " " + (where or config.plugins.autobackup.where.value)
 	return cmd
 
@@ -111,35 +114,28 @@ def runBackup(flashImagePars=None):
 	try:
 		from .ui import ArchiveCreator
 
-		# For local+archive mode, ArchiveCreator is instantiated only
-		# after the local backup has completed, matching the original behavior.
+		# In local+archive mode, create the archive after the local backup attempt.
 		archivePending = [not archiveOnly]
+		localBackupResult = [0]
 		archiveCreator = [
-			ArchiveCreator(destination) if archiveOnly else None
+			ArchiveCreator(config.plugins.autobackup.where_archives.value or destination) if archiveOnly else None
 		]
 
 		def appClosed(retval):
 			global container
 
-			# The first stage of local+archive completed successfully.
-			if not retval and archivePending[0]:
+			# Attempt the archive even if the local backup failed.
+			if archivePending[0]:
 				archivePending[0] = False
-				archiveCreator[0] = ArchiveCreator(destination)
+				localBackupResult[0] = retval
+				archiveCreator[0] = ArchiveCreator(config.plugins.autobackup.where_archives.value or destination)
 
-				backupDir = os.path.join(destination, "backup")
-				archiveCreator[0].createInfo(backupDir)
-
-				cmd = archiveCreator[0].buildArchiveCommand(
-					backupDir,
-					removeInfo=True
-				)
+				cmd = archiveCreator[0].buildCurrentSettingsCommand()
 
 				executeRetval = container.execute(cmd)
 				if executeRetval:
 					print("[AutoBackup] failed to execute archive")
-					container = None
-					if callback:
-						callback(None, executeRetval, None)
+					appClosed(executeRetval)
 
 				return
 
@@ -148,6 +144,8 @@ def runBackup(flashImagePars=None):
 				if archiveCreator[0] is not None:
 					archiveCreator[0].removeOldArchives()
 
+			retval = retval or localBackupResult[0]
+			if not retval:
 				setLastBackupTime()
 
 			print("[AutoBackup] complete, result:", retval)
@@ -165,7 +163,7 @@ def runBackup(flashImagePars=None):
 		if archiveOnly:
 			cmd = archiveCreator[0].buildCurrentSettingsCommand()
 		else:
-			cmd = backupCommand(destination, fullArchive=True)
+			cmd = backupCommand(destination)
 
 		writeLog("Automatic backup:\n", "w")
 		print("[AutoBackup] start automatic backup")

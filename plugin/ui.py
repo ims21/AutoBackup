@@ -295,6 +295,11 @@ class Config(ConfigListScreen, Screen):
 			defaultchoice = ""
 			choices = [("", _("Nowhere"))]
 		self.cfgwhere = ConfigSelection(default=defaultchoice, choices=choices)
+		archiveChoices = [("", _("Same as local"))] + [
+			choice for choice in choices if choice[0] not in ("", "/", "/media")
+		]
+		self.cfgwhere_archives = ConfigSelection(default=self.cfg.where_archives.value, choices=archiveChoices)
+		self.updateArchiveChoices()
 
 		self.createSetup()
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
@@ -326,6 +331,7 @@ class Config(ConfigListScreen, Screen):
 
 		self.archivePending = False
 		self.archiveCreator = None
+		self.localBackupResult = 0
 		self.cfgwhere.addNotifier(self.changedWhere)
 		self.onClose.append(self.__onClose)
 		self.setTitle(_("AutoBackup Configuration"))
@@ -333,7 +339,8 @@ class Config(ConfigListScreen, Screen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append((_("Backup location"), self.cfgwhere, _("Directory where backup files are created.")))
+		self.list.append((_("Local backup"), self.cfgwhere, _("Directory where local backup is created.")))
+		self.list.append((_("Archive location"), self.cfgwhere_archives, _("Directory where backup archives are stored.")))
 		self.list.append((_("Automatic backup"), self.cfg.enabled, _("Automatically creates backups at the selected frequency, start time, and backup mode.")))
 		if self.cfg.enabled.value:
 			self.list.append((4 * " " + _("Backup frequency"), self.cfg.frequency, _("Select how often an automatic backup is created.")))
@@ -343,13 +350,28 @@ class Config(ConfigListScreen, Screen):
 		self.list.append((_("Save EPG cache"), self.cfg.epgcache, _("Saves the contents of the EPG cache to a file before creating a manual backup.")))
 		self.list.append((_("Keep backup archives"), self.cfg.keeparchives, _("Select how many backup archives of each type are kept.")))
 
+	def updateArchiveChoices(self):
+		choices = [("", _("Same as local"))] + [
+			choice for choice in getLocationChoices()
+			if choice[0] not in ("", "/", "/media", self.cfgwhere.value)
+		]
+		current = self.cfgwhere_archives.value
+		if current not in [choice[0] for choice in choices]:
+			current = ""
+		self.cfgwhere_archives.setChoices(choices, default=current)
+
 	# for summary:
 	def changedEntry(self):
 		current = self["config"].getCurrent()
-		if current and current[1] in (self.cfg.enabled,):
+		if current and current[1] == self.cfgwhere:
+			self.updateArchiveChoices()
+		elif current and current[1] == self.cfg.enabled:
 			self.createSetup()
 			self["config"].list = self.list
 			self["config"].l.setList(self.list)
+
+		if current and current[1] == self.cfgwhere_archives:
+			self.changedWhere(self.cfgwhere)
 
 		for x in self.onChangedEntry:
 			x()
@@ -372,6 +394,7 @@ class Config(ConfigListScreen, Screen):
 		status = []
 		config.plugins.autobackup.where.value = cfg.value
 		path = os.path.join(cfg.value, "backup")
+		archivePath = os.path.join(self.cfgwhere_archives.value or cfg.value, "backup")
 
 		# local backup
 		timestampFile = os.path.join(path, ".timestamp")
@@ -388,13 +411,13 @@ class Config(ConfigListScreen, Screen):
 
 		# backup archive
 		try:
-			archives = getArchives(path, ARCHIVE_FILTERS_RESTORE, limit=1)
+			archives = getArchives(archivePath, ARCHIVE_FILTERS_RESTORE, limit=1)
 			if archives:
 				status.append(colorText(COLOR_GRAY, _("Last backup archive") + ": ") + colorText(COLOR_LIGHTGREEN, getArchiveDateTime(archives[0][0])))
 			else:
 				status.append(_("No matching backup archive present"))
 		except Exception as ex:
-			print("[AutoBackup] Failed to read archive status from %s: %s" % (path, ex))
+			print("[AutoBackup] Failed to read archive status from %s: %s" % (archivePath, ex))
 			status.append(_("Unable to read backup archive status"))
 
 		self["status"].setText("\n".join(status))
@@ -411,6 +434,8 @@ class Config(ConfigListScreen, Screen):
 	def save(self):
 		config.plugins.autobackup.where.value = self.cfgwhere.value
 		config.plugins.autobackup.where.save()
+		config.plugins.autobackup.where_archives.value = self.cfgwhere_archives.value
+		config.plugins.autobackup.where_archives.save()
 		self.saveAll()
 		self.close(True, self.session)
 
@@ -460,9 +485,11 @@ class Config(ConfigListScreen, Screen):
 		self["status"].setText(self.data)
 
 	def doBackup(self):
-		if not self.cfgwhere.value:
+		if not self.cfgwhere.value or self.container.running():
 			return
 
+		self.cfg.where_archives.value = self.cfgwhere_archives.value
+		self.cfg.where_archives.save()
 		self.saveAll()
 		# Write config file before creating the backup so we have it all
 		plugin.prepareBackup()
@@ -474,7 +501,8 @@ class Config(ConfigListScreen, Screen):
 		self.showOutput()
 		self["statusbar"].setText(_('Running...'))
 
-		cmd = plugin.backupCommand(fullArchive=True)
+		cmd = plugin.backupCommand(self.cfgwhere.value)
+		self.localBackupResult = 0
 		self.archivePending = True
 
 		if self.container.execute(cmd):
@@ -659,22 +687,25 @@ class Config(ConfigListScreen, Screen):
 
 		if self.archivePending:
 			self.archivePending = False
-			if not retval:
-				self.doArchiveCurrentBackup()
-				return
+			self.localBackupResult = retval
+			self.doArchiveCurrentBackup()
+			return
 
 		if self.archiveCreator is not None:
 			archiveCreator = self.archiveCreator
 			self.archiveCreator = None
 			if not retval:
 				archiveCreator.removeOldArchives()
+			retval = retval or self.localBackupResult
+			self.localBackupResult = 0
+			if not retval:
 				plugin.setLastBackupTime()
 
 		txt = _("Failed") if retval else _("Done")
-		self.showOutput()
 		self.data = ''
 		self["statusbar"].setText(txt)
-		self.changedWhere(self.cfgwhere)
+		if not retval:
+			self.changedWhere(self.cfgwhere)
 
 	def dataAvail(self, s):
 		if isinstance(s, bytes):
@@ -686,19 +717,20 @@ class Config(ConfigListScreen, Screen):
 
 	def doRestore(self):
 		backupDir = os.path.join(self.cfgwhere.value, "backup")
+		archiveDir = os.path.join(self.cfgwhere_archives.value or self.cfgwhere.value, "backup")
 
 		if self.activeArchiveFilters is None:
 			self.activeArchiveFilters = ARCHIVE_FILTERS_RESTORE.copy()
 
 		if ENABLE_EXPERIMENTAL_FEATURES:
 			timingText = "\n\n"
-			archives, elapsed, checked = getArchivesTimed(backupDir, self.activeArchiveFilters, limit=1)
+			archives, elapsed, checked = getArchivesTimed(archiveDir, self.activeArchiveFilters, limit=1)
 			if checked:
 				 timingText += ngettext("Checked %s archive\n", "Checked %s archives\n", checked) % colorText(COLOR_LIGHTGREEN, "%d" % checked)
 			if elapsed is not None:
 				timingText += _("Search time: %s") % colorText(COLOR_LIGHTGREEN, "%.3f s" % elapsed)
 		else:
-			archives = getArchives(backupDir, self.activeArchiveFilters, limit=1)
+			archives = getArchives(archiveDir, self.activeArchiveFilters, limit=1)
 
 		if archives:
 			filename, backupFile = archives[0][:2]
@@ -716,7 +748,7 @@ class Config(ConfigListScreen, Screen):
 			# details, dummy = formatArchiveDetails(archiveInfo, files)
 			# text += "\n\n" + details
 
-			backupList = [("%s %s %s" % (self.cfgwhere.value, _("from: "), getArchiveDateTime(filename)), True)]
+			backupList = [("%s %s %s" % (self.cfgwhere_archives.value or self.cfgwhere.value, _("from: "), getArchiveDateTime(filename)), True)]
 			self.session.openWithCallback(
 				boundFunction(self.doRestorePreviousConfirmed, backupFile, backupDir),
 				MessageBox,
@@ -733,7 +765,7 @@ class Config(ConfigListScreen, Screen):
 		self.doRestorePrevious()
 
 	def doRestorePrevious(self, selectedIndex=None):
-		backupDir = os.path.join(self.cfgwhere.value, "backup")
+		backupDir = os.path.join(self.cfgwhere_archives.value or self.cfgwhere.value, "backup")
 		if self.activeArchiveFilters is None:
 			self.activeArchiveFilters = ARCHIVE_FILTERS_RESTORE.copy()
 		self.session.openWithCallback(
@@ -764,14 +796,12 @@ class Config(ConfigListScreen, Screen):
 		return result
 
 	def doArchiveCurrentBackup(self):
-		if not self.prepareCommand():
-			return
-		archive = ArchiveCreator(self.cfgwhere.value)
-		backupDir = os.path.join(self.cfgwhere.value, "backup")
-		archive.createInfo(backupDir)
+		archive = ArchiveCreator(self.cfgwhere_archives.value or self.cfgwhere.value)
+		cmd = archive.buildCurrentSettingsCommand()
 		self.archiveCreator = archive
-		if self.executeCommand(archive.buildArchiveCommand(backupDir, removeInfo=True)):
-			self.archiveCreator = None
+		executeRetval = self.executeCommand(cmd)
+		if executeRetval:
+			self.appClosed(executeRetval)
 
 	def doArchiveCurrentSettings(self):
 		if not self.prepareCommand():
@@ -779,7 +809,7 @@ class Config(ConfigListScreen, Screen):
 
 		plugin.prepareBackup()
 
-		archive = ArchiveCreator(self.cfgwhere.value)
+		archive = ArchiveCreator(self.cfgwhere_archives.value or self.cfgwhere.value)
 		cmd = archive.buildCurrentSettingsCommand()
 		self.archiveCreator = archive
 		self.container.appClosed.remove(self.appClosed)
@@ -802,7 +832,7 @@ class Config(ConfigListScreen, Screen):
 			self["status"].setText(_("Backup archive created"))
 		else:
 			self["statusbar"].setText(_("Failed"))
-			self["status"].setText(_("Archive creation failed"))
+			self["status"].appendText("\n" + _("Archive creation failed"))
 
 	def doDeletePreviousConfirmed(self, backupFile, selectedIndex, archiveList, answer):
 		if not answer:
@@ -830,16 +860,17 @@ class Config(ConfigListScreen, Screen):
 		self.showOutput()
 		self["statusbar"].setText(_('Running...'))
 
-		cmd = 'tar -tzf "%s" && tar -xzf "%s" -C "%s" && /etc/init.d/settings-restore.sh %s && killall -9 enigma2' % (backupFile, backupFile, backupDir, self.cfgwhere.value)
+		cmd = 'tar -tzf "%s" && mkdir -p "%s" && tar -xzf "%s" -C "%s" && /etc/init.d/settings-restore.sh %s && killall -9 enigma2' % (backupFile, backupDir, backupFile, backupDir, self.cfgwhere.value)
 
 		# Alternative restore without extracting symlinks:
 		# cmd = (
 		#	'tar -tzf "%s" && '
+		#	'mkdir -p "%s" && '
 		#	'tar -xzf "%s" -C "%s" '
 		#	'--exclude="PLi-AutoBackup.tar.gz" '
 		#	'--exclude="autoinstall" '
 		#	'&& /etc/init.d/settings-restore.sh %s && killall -9 enigma2'
-		#	) % (backupFile, backupFile, backupDir, self.cfgwhere.value)
+		#	) % (backupFile, backupDir, backupFile, backupDir, self.cfgwhere.value)
 
 		if self.container.execute(cmd):
 			print("[AutoBackup] failed to execute")
@@ -916,13 +947,19 @@ class ArchiveCreator:
 		)
 
 		return (
+			'mkdir -p "%s/backup" && '
 			'cd "%s" && '
-			'tar -czf "%s/backup/%s" %s %s; '
+			'archiveDir="%s/backup" && '
+			'archiveFile="$archiveDir/%s" && '
+			'rm -f "$archiveFile" && '
+			'echo "Generating archive to $archiveDir/" && '
+			'tar -czf "$archiveFile" %s %s; '
 			'archiveStatus=$?; '
 			'%s'
 			'rm -rf "%s"; '
 			'exit $archiveStatus'
 		) % (
+			self.destination,
 			backupDir,
 			self.destination,
 			self.archiveName,
@@ -936,7 +973,7 @@ class ArchiveCreator:
 		self.prepareArchive()
 
 		return '%s && %s' % (
-			plugin.backupCommand(self.tmpBackupDir, fullArchive=True),
+			plugin.backupCommand(self.tmpBackupDir, fullArchive=True, quiet=True),
 			self.buildArchiveCommand(os.path.join(self.tmpBackupDir, "backup"))
 		)
 
@@ -1416,7 +1453,7 @@ class ArchiveList(Screen):
 		self.close(None)
 		self.configScreen.doRestorePreviousConfirmed(
 			backupFile,
-			self.backupDir,
+			os.path.join(self.configScreen.cfgwhere.value, "backup"),
 			True
 		)
 

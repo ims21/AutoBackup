@@ -2,15 +2,19 @@
 # Backup files to harddisk backup dir
 
 if [ -z "$1" ] ; then
-	echo "usage: $0 [-a] /path/to/destination"
+	echo "usage: $0 [-a] [-q] /path/to/destination"
 	exit 1
 fi
 
 AUTOINSTALL="no"
-if [ "$1" = "-a" ] ; then
-	AUTOINSTALL="yes"
+QUIET="no"
+while [ "$1" = "-a" ] || [ "$1" = "-q" ] ; do
+	case "$1" in
+		-a) AUTOINSTALL="yes" ;;
+		-q) QUIET="yes" ;;
+	esac
 	shift
-fi
+done
 
 BACKUPDIR="$1"
 if [ -z "$BACKUPDIR" ] ; then
@@ -36,8 +40,13 @@ MACADDR=`cat /sys/class/net/eth0/address | tr -d :`
 [ -z "$MACADDR" ] && MACADDR=nomac
 
 # prepare special files for backup
-echo "Backup to $BACKUPDIR/backup/"
-[ ! -d "$BACKUPDIR/backup" ] && mkdir -p "$BACKUPDIR/backup"
+if [ "$QUIET" = "no" ]; then
+	echo "Backup to $BACKUPDIR/backup/"
+fi
+if ! mkdir -p "$BACKUPDIR/backup"; then
+	echo "Failed to create backup directory: $BACKUPDIR/backup"
+	exit 1
+fi
 
 for bckfile in $BACKUPFILE $USER_BACKUPFILE ; do
     if [ -f $bckfile ] ; then
@@ -73,7 +82,7 @@ fi
 
 # create the backup tarball
 if ! tar -czf "$BACKUPDIR/backup/PLi-AutoBackup$MACADDR.tar.gz" --files-from="$RESTORE_TEMP" 2> /dev/null; then
-	echo "Failed to create backup archive"
+	echo "Failed to create backup"
 	exit 1
 fi
 ln -f -s PLi-AutoBackup$MACADDR.tar.gz "$BACKUPDIR/backup/PLi-AutoBackup.tar.gz" || \
@@ -81,7 +90,9 @@ cp -p "$BACKUPDIR/backup/PLi-AutoBackup$MACADDR.tar.gz" "$BACKUPDIR/backup/PLi-A
 
 # create the autoinstall file
 if [ "$AUTOINSTALL" = "yes" -a -f $INSTALLED ] ; then
-	echo "Generating $BACKUPDIR/backup/autoinstall$MACADDR"
+	if [ "$QUIET" = "no" ]; then
+		echo "Generating $BACKUPDIR/backup/autoinstall$MACADDR"
+	fi
 	opkg list_installed | cut -d ' ' -f 1 > $TEMP_INSTALLED
 	diff $INSTALLED $TEMP_INSTALLED | grep "^+" | grep -v "^+++ $TEMP_INSTALLED" | \
                sed 's/^+//' > "$BACKUPDIR/backup/autoinstall$MACADDR"
@@ -96,6 +107,8 @@ if [ "$AUTOINSTALL" = "yes" -a -f $INSTALLED ] ; then
 	fi
 	ln -f -s autoinstall$MACADDR "$BACKUPDIR/backup/autoinstall" || \
 	cp -p "$BACKUPDIR/backup/autoinstall$MACADDR" "$BACKUPDIR/backup/autoinstall"
+elif [ "$AUTOINSTALL" = "no" ]; then
+	rm -f "$BACKUPDIR/backup/autoinstall$MACADDR" "$BACKUPDIR/backup/autoinstall"
 fi
 
 # mark the backup done
