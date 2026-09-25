@@ -61,7 +61,7 @@ def getLocationChoices():
 	result = []
 	for line in open('/proc/mounts', 'r'):
 		items = line.split()
-		if items[1].startswith('/media'):
+		if items[1] == '/media' or items[1].startswith('/media/'):
 			desc = FRIENDLY.get(items[1], items[1])
 			if items[0].startswith('//'):
 				desc += ' (*)'
@@ -75,7 +75,11 @@ def getLocationChoices():
 			elif items[0].startswith('/dev/hda'):
 				desc = _("Harddisk")
 			result.append((items[1], desc))
-	return result
+	unique = {}
+	for path, desc in result:
+		if path not in unique or desc.endswith(" (*)"):
+			unique[path] = desc
+	return list(unique.items())
 
 
 def getStandardFiles():
@@ -294,12 +298,11 @@ class Config(ConfigListScreen, Screen):
 		else:
 			defaultchoice = ""
 			choices = [("", _("Nowhere"))]
+		self.locationChoices = choices
 		self.cfgwhere = ConfigSelection(default=defaultchoice, choices=choices)
-		archiveChoices = [("", _("Same as local"))] + [
-			choice for choice in choices if choice[0] not in ("", "/", "/media")
-		]
-		self.cfgwhere_archives = ConfigSelection(default=self.cfg.where_archives.value, choices=archiveChoices)
-		self.updateArchiveChoices()
+		self.cfgwhere_archives = ConfigSelection(default="", choices=self.getArchiveChoices())
+		self.cfgwhere_archives.value = self.cfg.where_archives.value
+		self.cfgwhere_archives.save()
 
 		self.createSetup()
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
@@ -350,22 +353,19 @@ class Config(ConfigListScreen, Screen):
 		self.list.append((_("Save EPG cache"), self.cfg.epgcache, _("Saves the contents of the EPG cache to a file before creating a manual backup.")))
 		self.list.append((_("Keep backup archives"), self.cfg.keeparchives, _("Select how many backup archives of each type are kept.")))
 
-	def updateArchiveChoices(self):
-		choices = [("", _("Same as local"))] + [
-			choice for choice in getLocationChoices()
+	def getArchiveChoices(self):
+		return [("", _("Same as local"))] + [
+			choice for choice in self.locationChoices
 			if choice[0] not in ("", "/", "/media", self.cfgwhere.value)
 		]
-		current = self.cfgwhere_archives.value
-		if current not in [choice[0] for choice in choices]:
-			current = ""
-		self.cfgwhere_archives.setChoices(choices, default=current)
+
+	def updateArchiveChoices(self):
+		self.cfgwhere_archives.setChoices(self.getArchiveChoices(), default="")
 
 	# for summary:
 	def changedEntry(self):
 		current = self["config"].getCurrent()
-		if current and current[1] == self.cfgwhere:
-			self.updateArchiveChoices()
-		elif current and current[1] == self.cfg.enabled:
+		if current and current[1] == self.cfg.enabled:
 			self.createSetup()
 			self["config"].list = self.list
 			self["config"].l.setList(self.list)
@@ -387,6 +387,8 @@ class Config(ConfigListScreen, Screen):
 		return SetupSummary
 
 	def changedWhere(self, cfg):
+		self.updateArchiveChoices()
+		self["config"].invalidate(self.list[1])
 		if not cfg.value:
 			self["status"].setText(_("No suitable media found, insert USB stick, flash card or harddisk."))
 			return
