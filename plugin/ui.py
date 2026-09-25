@@ -318,13 +318,13 @@ class Config(ConfigListScreen, Screen):
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
 			"red": self.cancel,
-			"green": self.save,
-			"yellow": self.doBackup,
+			"green": lambda: self.confirmBackupLocation(self.save),
+			"yellow": lambda: self.confirmBackupLocation(self.doBackup),
 			"blue": self.doRestore,
-			"save": self.save,
+			"save": lambda: self.confirmBackupLocation(self.save),
 			"cancel": self.cancel,
 			"ok": self.ok,
-			"menu": self.menu,
+			"menu": lambda: self.confirmBackupLocation(self.menu),
 		}, -2)
 		self.onChangedEntry = []
 		self.data = ''
@@ -394,7 +394,6 @@ class Config(ConfigListScreen, Screen):
 			return
 
 		status = []
-		config.plugins.autobackup.where.value = cfg.value
 		path = os.path.join(cfg.value, "backup")
 		archivePath = os.path.join(self.cfgwhere_archives.value or cfg.value, "backup")
 
@@ -431,7 +430,23 @@ class Config(ConfigListScreen, Screen):
 		if hasattr(self, "keySelect"):
 			self.keySelect()
 		else:
-			self.save()
+			self.confirmBackupLocation(self.save)
+
+	def confirmBackupLocation(self, callback):
+		localWhere = self.cfgwhere.value
+		archiveWhere = self.cfgwhere_archives.value or localWhere
+		if localWhere not in ("/", "/media") and archiveWhere not in ("/", "/media"):
+			callback()
+			return
+
+		self.session.openWithCallback(
+			lambda answer: callback() if answer else None,
+			MessageBox,
+			_("Storing backups in the selected location may fill the receiver's internal storage or memory and cause the receiver to malfunction.\n\nDo you want to continue?"),
+			type=MessageBox.TYPE_YESNO,
+			default=False,
+			picon=MessageBox.TYPE_ERROR
+		)
 
 	def save(self):
 		config.plugins.autobackup.where.value = self.cfgwhere.value
@@ -490,6 +505,8 @@ class Config(ConfigListScreen, Screen):
 		if not self.cfgwhere.value or self.container.running():
 			return
 
+		self.cfg.where.value = self.cfgwhere.value
+		self.cfg.where.save()
 		self.cfg.where_archives.value = self.cfgwhere_archives.value
 		self.cfg.where_archives.save()
 		self.saveAll()
