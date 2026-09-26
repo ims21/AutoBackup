@@ -126,7 +126,7 @@ def getHostName():
 
 
 def getHardwareName():
-	return about.getHardwareTypeString().split(" (", 1)[0]
+	return about.getHardwareTypeString()
 
 
 def getImageName():
@@ -1158,6 +1158,9 @@ def formatAutoBackupInfo(archiveInfo, mismatch=None):
 
 		key, value = line.split("=", 1)
 		key = key.strip()
+		if key == "hardware":
+			# hide hardware revision/version details in parentheses for display only
+			value = value.split(" (", 1)[0]
 		formatted = "%s:\t%s" % (key, value.strip())
 
 		if key in mismatch:
