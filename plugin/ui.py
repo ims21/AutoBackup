@@ -126,7 +126,7 @@ def getHostName():
 
 
 def getHardwareName():
-	return about.getHardwareTypeString()
+	return about.getHardwareTypeString().split(" (", 1)[0]
 
 
 def getImageName():
