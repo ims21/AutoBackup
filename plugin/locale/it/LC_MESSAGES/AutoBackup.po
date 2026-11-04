@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutoBackup\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 12:12+0200\n"
+"POT-Creation-Date: 2026-11-04 15:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Dario Croci <spaeleus@croci.org>\n"
 "Language-Team: Dario Croci <spaeleus@croci.org>\n"
@@ -26,11 +26,11 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../ui.py:1579
+#: ../ui.py:1582
 msgid "Apply filters"
 msgstr ""
 
-#: ../ui.py:1200
+#: ../ui.py:1203
 msgid "Archive contents"
 msgstr ""
 
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Archive creation failed"
 msgstr ""
 
-#: ../ui.py:1561
+#: ../ui.py:1564
 msgid "Archive filters"
 msgstr ""
 
@@ -81,7 +81,7 @@ msgstr "Salvare cache EPG"
 msgid "Backup archive created"
 msgstr "Salvare cache EPG"
 
-#: ../ui.py:1353 ../ui.py:1407
+#: ../ui.py:1356 ../ui.py:1410
 #, fuzzy
 msgid "Backup archive list"
 msgstr "Salvare cache EPG"
@@ -108,7 +108,7 @@ msgstr ""
 msgid "CF"
 msgstr "Scheda CF"
 
-#: ../ui.py:310 ../ui.py:1578 ../ui.py:1631
+#: ../ui.py:310 ../ui.py:1581 ../ui.py:1634
 msgid "Cancel"
 msgstr "Annullare"
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "Daily"
 msgstr ""
 
-#: ../ui.py:632 ../ui.py:654 ../ui.py:1362
+#: ../ui.py:632 ../ui.py:654 ../ui.py:1365
 msgid "Delete"
 msgstr ""
 
@@ -170,7 +170,7 @@ msgstr "Rimuovere elenco ripristino automatico"
 msgid "Delete including the generic 'autoinstall' file"
 msgstr "Rimuovere elenco ripristino automatico"
 
-#: ../ui.py:1670
+#: ../ui.py:1673
 msgid "Deselect"
 msgstr "Deselezionare"
 
@@ -195,7 +195,7 @@ msgid ""
 "On shared storage, it may belong to another receiver!"
 msgstr ""
 
-#: ../ui.py:1492
+#: ../ui.py:1495
 #, fuzzy
 msgid "Do you really want to delete this backup archive?"
 msgstr ""
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Done"
 msgstr "Fatto"
 
-#: ../ui.py:1574
+#: ../ui.py:1577
 msgid "Enigma"
 msgstr ""
 
@@ -267,7 +267,7 @@ msgstr "Fallito"
 msgid "Failed to delete backup."
 msgstr "Selezionare file di cui fare il backup"
 
-#: ../ui.py:1365
+#: ../ui.py:1368
 msgid "Filters"
 msgstr ""
 
@@ -275,11 +275,11 @@ msgstr ""
 msgid "Harddisk"
 msgstr "Hard disk"
 
-#: ../ui.py:1572
+#: ../ui.py:1575
 msgid "Hostname"
 msgstr ""
 
-#: ../ui.py:1573
+#: ../ui.py:1576
 msgid "Image"
 msgstr ""
 
@@ -324,23 +324,23 @@ msgstr ""
 msgid "Manual"
 msgstr "Manuale"
 
-#: ../ui.py:1574
+#: ../ui.py:1577
 msgid "Match the current enigma name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1572
+#: ../ui.py:1575
 msgid "Match the current hostname using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1573
+#: ../ui.py:1576
 msgid "Match the current image name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1571
+#: ../ui.py:1574
 msgid "Match the current receiver MAC address using the archive name, info file or filenames in the archive."
 msgstr ""
 
-#: ../ui.py:1575
+#: ../ui.py:1578
 msgid "Match the current slot number using the archive name or the info file."
 msgstr ""
 
@@ -371,7 +371,7 @@ msgid ""
 "Delete it anyway?"
 msgstr ""
 
-#: ../ui.py:1413 ../ui.py:1507
+#: ../ui.py:1416 ../ui.py:1510
 msgid ""
 "No backup archives match the current filters.\n"
 "\n"
@@ -396,15 +396,15 @@ msgstr "Nessun supporto adatto: inserire una chiave USB/scheda flash/hard disk."
 msgid "Nowhere"
 msgstr "Nessuna destinazione"
 
-#: ../ui.py:1425
+#: ../ui.py:1428
 msgid "Original order"
 msgstr ""
 
-#: ../ui.py:1684
+#: ../ui.py:1687
 msgid "Really close without saving settings?"
 msgstr "Chiudere senza salvare le impostazioni?"
 
-#: ../ui.py:1571
+#: ../ui.py:1574
 msgid "Receiver MAC"
 msgstr ""
 
@@ -417,7 +417,7 @@ msgstr "Rimuovere elenco ripristino automatico"
 msgid "Remove the 'autoinstall' file from a local backup."
 msgstr "Nessun elenco di ripristino automatico"
 
-#: ../ui.py:313 ../ui.py:487 ../ui.py:1363
+#: ../ui.py:313 ../ui.py:487 ../ui.py:1366
 msgid "Restore"
 msgstr "Ripristinare"
 
@@ -434,7 +434,7 @@ msgstr ""
 msgid "Restore settings from the latest valid backup archive (same as pressing the blue button on the main screen)."
 msgstr ""
 
-#: ../ui.py:1450
+#: ../ui.py:1453
 msgid "Restore this backup archive and restart?"
 msgstr ""
 
@@ -448,11 +448,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../ui.py:1452
+#: ../ui.py:1455
 msgid "Restore this backup archive anyway and restart?"
 msgstr ""
 
-#: ../ui.py:1364 ../ui.py:1425
+#: ../ui.py:1367 ../ui.py:1428
 msgid "Reverse order"
 msgstr ""
 
@@ -476,7 +476,7 @@ msgstr "Scheda SD"
 msgid "Same as local"
 msgstr ""
 
-#: ../ui.py:311 ../ui.py:1632
+#: ../ui.py:311 ../ui.py:1635
 msgid "Save"
 msgstr "Salvare"
 
@@ -498,7 +498,7 @@ msgstr ""
 msgid "Search time: %s"
 msgstr ""
 
-#: ../ui.py:1672
+#: ../ui.py:1675
 msgid "Select"
 msgstr "Selezionare"
 
@@ -510,7 +510,7 @@ msgstr ""
 msgid "Select files to backup"
 msgstr "Selezionare file di cui fare il backup"
 
-#: ../ui.py:1663
+#: ../ui.py:1666
 msgid "Select files/folders to backup"
 msgstr "Selezionare file/directory da includere nel backup"
 
@@ -528,7 +528,7 @@ msgstr "Backup giornaliero automatico"
 msgid "Set the reference time for automatic backups."
 msgstr "Backup giornaliero automatico"
 
-#: ../ui.py:1575
+#: ../ui.py:1578
 msgid "Slot"
 msgstr ""
 
@@ -557,7 +557,7 @@ msgstr "Unità USB"
 msgid "Unable to read backup archive status"
 msgstr "Salvare cache EPG"
 
-#: ../ui.py:1543
+#: ../ui.py:1546
 msgid "Unable to read backup archive."
 msgstr ""
 
@@ -570,7 +570,7 @@ msgstr "Data ultimo backup"
 msgid "Unknown time"
 msgstr ""
 
-#: ../ui.py:1183
+#: ../ui.py:1186
 msgid "autobackup.info file is missing in archive"
 msgstr ""
 

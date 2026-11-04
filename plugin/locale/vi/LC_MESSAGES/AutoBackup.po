@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 12:12+0200\n"
+"POT-Creation-Date: 2026-11-04 15:05+0100\n"
 "PO-Revision-Date: 2019-07-25 09:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../ui.py:1579
+#: ../ui.py:1582
 msgid "Apply filters"
 msgstr ""
 
-#: ../ui.py:1200
+#: ../ui.py:1203
 msgid "Archive contents"
 msgstr ""
 
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Archive creation failed"
 msgstr ""
 
-#: ../ui.py:1561
+#: ../ui.py:1564
 msgid "Archive filters"
 msgstr ""
 
@@ -78,7 +78,7 @@ msgstr "Sao lưu bộ đệm EPG"
 msgid "Backup archive created"
 msgstr "Sao lưu bộ đệm EPG"
 
-#: ../ui.py:1353 ../ui.py:1407
+#: ../ui.py:1356 ../ui.py:1410
 #, fuzzy
 msgid "Backup archive list"
 msgstr "Sao lưu bộ đệm EPG"
@@ -105,7 +105,7 @@ msgstr ""
 msgid "CF"
 msgstr "CF"
 
-#: ../ui.py:310 ../ui.py:1578 ../ui.py:1631
+#: ../ui.py:310 ../ui.py:1581 ../ui.py:1634
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
@@ -151,7 +151,7 @@ msgstr ""
 msgid "Daily"
 msgstr ""
 
-#: ../ui.py:632 ../ui.py:654 ../ui.py:1362
+#: ../ui.py:632 ../ui.py:654 ../ui.py:1365
 msgid "Delete"
 msgstr ""
 
@@ -165,7 +165,7 @@ msgstr "Xóa danh sách cài đặt tự động"
 msgid "Delete including the generic 'autoinstall' file"
 msgstr "Xóa danh sách cài đặt tự động"
 
-#: ../ui.py:1670
+#: ../ui.py:1673
 msgid "Deselect"
 msgstr "Bỏ chọn"
 
@@ -190,7 +190,7 @@ msgid ""
 "On shared storage, it may belong to another receiver!"
 msgstr ""
 
-#: ../ui.py:1492
+#: ../ui.py:1495
 #, fuzzy
 msgid "Do you really want to delete this backup archive?"
 msgstr ""
@@ -201,7 +201,7 @@ msgstr ""
 msgid "Done"
 msgstr "Làm xong"
 
-#: ../ui.py:1574
+#: ../ui.py:1577
 msgid "Enigma"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr "Thất bại"
 msgid "Failed to delete backup."
 msgstr "Chọn tập tin để sao lưu"
 
-#: ../ui.py:1365
+#: ../ui.py:1368
 msgid "Filters"
 msgstr ""
 
@@ -270,11 +270,11 @@ msgstr ""
 msgid "Harddisk"
 msgstr "Ổ đĩa cứng"
 
-#: ../ui.py:1572
+#: ../ui.py:1575
 msgid "Hostname"
 msgstr ""
 
-#: ../ui.py:1573
+#: ../ui.py:1576
 msgid "Image"
 msgstr ""
 
@@ -319,23 +319,23 @@ msgstr ""
 msgid "Manual"
 msgstr "Hướng dẫn sử dụng"
 
-#: ../ui.py:1574
+#: ../ui.py:1577
 msgid "Match the current enigma name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1572
+#: ../ui.py:1575
 msgid "Match the current hostname using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1573
+#: ../ui.py:1576
 msgid "Match the current image name using the archive name or the info file."
 msgstr ""
 
-#: ../ui.py:1571
+#: ../ui.py:1574
 msgid "Match the current receiver MAC address using the archive name, info file or filenames in the archive."
 msgstr ""
 
-#: ../ui.py:1575
+#: ../ui.py:1578
 msgid "Match the current slot number using the archive name or the info file."
 msgstr ""
 
@@ -366,7 +366,7 @@ msgid ""
 "Delete it anyway?"
 msgstr ""
 
-#: ../ui.py:1413 ../ui.py:1507
+#: ../ui.py:1416 ../ui.py:1510
 msgid ""
 "No backup archives match the current filters.\n"
 "\n"
@@ -391,15 +391,15 @@ msgstr "Không tìm thấy phương tiện phù hợp, cắm thẻ nhớ USB, th
 msgid "Nowhere"
 msgstr "Không nơi nào"
 
-#: ../ui.py:1425
+#: ../ui.py:1428
 msgid "Original order"
 msgstr ""
 
-#: ../ui.py:1684
+#: ../ui.py:1687
 msgid "Really close without saving settings?"
 msgstr ""
 
-#: ../ui.py:1571
+#: ../ui.py:1574
 msgid "Receiver MAC"
 msgstr ""
 
@@ -412,7 +412,7 @@ msgstr "Xóa danh sách cài đặt tự động"
 msgid "Remove the 'autoinstall' file from a local backup."
 msgstr "Xóa danh sách cài đặt tự động"
 
-#: ../ui.py:313 ../ui.py:487 ../ui.py:1363
+#: ../ui.py:313 ../ui.py:487 ../ui.py:1366
 msgid "Restore"
 msgstr "Khôi phục"
 
@@ -429,7 +429,7 @@ msgstr ""
 msgid "Restore settings from the latest valid backup archive (same as pressing the blue button on the main screen)."
 msgstr ""
 
-#: ../ui.py:1450
+#: ../ui.py:1453
 msgid "Restore this backup archive and restart?"
 msgstr ""
 
@@ -443,11 +443,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../ui.py:1452
+#: ../ui.py:1455
 msgid "Restore this backup archive anyway and restart?"
 msgstr ""
 
-#: ../ui.py:1364 ../ui.py:1425
+#: ../ui.py:1367 ../ui.py:1428
 msgid "Reverse order"
 msgstr ""
 
@@ -471,7 +471,7 @@ msgstr "SD"
 msgid "Same as local"
 msgstr ""
 
-#: ../ui.py:311 ../ui.py:1632
+#: ../ui.py:311 ../ui.py:1635
 msgid "Save"
 msgstr "Lưu lại"
 
@@ -493,7 +493,7 @@ msgstr ""
 msgid "Search time: %s"
 msgstr ""
 
-#: ../ui.py:1672
+#: ../ui.py:1675
 msgid "Select"
 msgstr "Lựa chọn"
 
@@ -505,7 +505,7 @@ msgstr ""
 msgid "Select files to backup"
 msgstr "Chọn tập tin để sao lưu"
 
-#: ../ui.py:1663
+#: ../ui.py:1666
 msgid "Select files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
 
@@ -523,7 +523,7 @@ msgstr "Sao lưu tự động hàng ngày"
 msgid "Set the reference time for automatic backups."
 msgstr "Sao lưu tự động hàng ngày"
 
-#: ../ui.py:1575
+#: ../ui.py:1578
 msgid "Slot"
 msgstr ""
 
@@ -552,7 +552,7 @@ msgstr "USB"
 msgid "Unable to read backup archive status"
 msgstr "Sao lưu bộ đệm EPG"
 
-#: ../ui.py:1543
+#: ../ui.py:1546
 msgid "Unable to read backup archive."
 msgstr ""
 
@@ -565,7 +565,7 @@ msgstr "Ngày sao lưu cuối cùng"
 msgid "Unknown time"
 msgstr ""
 
-#: ../ui.py:1183
+#: ../ui.py:1186
 msgid "autobackup.info file is missing in archive"
 msgstr ""
 
